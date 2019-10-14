@@ -10,3 +10,20 @@ commands:
   gc:
     description: Talk to all players in the server.
     usage: /gc
+  nick:
+    description: Change nicknames.
+    usage: /nick [player] <nickname>
+permissions:
+  sweetchat.*:
+    description: Access to all SweetChat functionality.
+    children:
+      sweetchat.nick.*: true
+    sweetchat.nick.*:
+      description: Change your own and others nickname.
+      children:
+        sweetchat.nick.self: true
+        sweetchat.nick.others: true
+    sweetchat.nick.self:
+      description: Change your own nickname.
+    sweetchat.nick.others:
+      description: Change other players nicknames.

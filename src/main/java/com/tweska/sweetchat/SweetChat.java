@@ -4,6 +4,7 @@ import com.tweska.sweetchat.chats.GlobalChat;
 import com.tweska.sweetchat.chats.LocalChat;
 import com.tweska.sweetchat.commands.GlobalChatCommand;
 import com.tweska.sweetchat.commands.LocalChatCommand;
+import com.tweska.sweetchat.commands.NickCommand;
 import com.tweska.sweetchat.listeners.ChatListener;
 import com.tweska.sweetchat.util.ChatMode;
 
@@ -36,5 +37,6 @@ public class SweetChat extends JavaPlugin {
         /* Register all commands of this plugin. */
         this.getCommand("lc").setExecutor(new LocalChatCommand(playerChatMode));
         this.getCommand("gc").setExecutor(new GlobalChatCommand(playerChatMode));
+        this.getCommand("nick").setExecutor(new NickCommand());
     }
 }
