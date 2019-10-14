@@ -1,0 +1,12 @@
+name: SweetChat
+version: 1.0
+main: com.tweska.sweetchat.SweetChat
+api-version: 1.14
+website: https://luniker.net/
+commands:
+  lc:
+    description: Talk to players nearby.
+    usage: /lc
+  gc:
+    description: Talk to all players in the server.
+    usage: /gc
