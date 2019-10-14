@@ -18,6 +18,7 @@ public class LocalChatCommand implements CommandExecutor {
     }
 
     /** Switch chat mode for the player when the command is triggered. */
+    @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
         /* This command is only intended for players. */
         if(!(sender instanceof Player)) {
