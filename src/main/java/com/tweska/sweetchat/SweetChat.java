@@ -65,6 +65,9 @@ public class SweetChat extends JavaPlugin {
         for(Player player : getServer().getOnlinePlayers()) {
             /* Update the nickname of the player. */
             Nickname.updateNickname(player);
+
+            /* Set the players chat mode to the default chat mode (global). */
+            playerChatMode.put(player, ChatMode.GLOBAL_CHAT);
         }
 
         /* Register all event listeners of this plugin. */

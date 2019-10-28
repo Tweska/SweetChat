@@ -62,17 +62,6 @@ public class ChatListener implements Listener {
         });
     }
 
-    /** When the plugin is enabled all online players should be added to the list of player chat modes. */
-    @EventHandler
-    public void onPluginEnableEvent(PluginEnableEvent event) {
-        Server server = event.getPlugin().getServer();
-
-        /* Set the chat mode of all players to the default (global). */
-        for(Player player : server.getOnlinePlayers()) {
-            playerChatMode.put(player, ChatMode.GLOBAL_CHAT);
-        }
-    }
-
     /** When players join the server they should have a chat mode by default. */
     @EventHandler
     public void onPlayerJoinEvent(PlayerJoinEvent event) {
