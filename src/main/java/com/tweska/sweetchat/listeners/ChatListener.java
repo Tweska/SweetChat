@@ -5,6 +5,7 @@ import com.tweska.sweetchat.events.SweetChatEvent;
 import com.tweska.sweetchat.events.GlobalChatEvent;
 import com.tweska.sweetchat.events.LocalChatEvent;
 
+import com.tweska.sweetchat.util.Nickname;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Server;
@@ -76,6 +77,8 @@ public class ChatListener implements Listener {
     @EventHandler
     public void onPlayerJoinEvent(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+
+        Nickname.updateNickname(player);
 
         /* Check if the player already has a chat mode. */
         if (playerChatMode.containsKey(player)) {

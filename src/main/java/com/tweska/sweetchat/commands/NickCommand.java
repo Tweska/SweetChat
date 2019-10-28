@@ -1,7 +1,7 @@
 package com.tweska.sweetchat.commands;
 
+import com.tweska.sweetchat.util.Nickname;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -25,10 +25,10 @@ public class NickCommand implements CommandExecutor {
         /* Determine the player instance and the new nickname. */
         if(args.length == 1 && sender.hasPermission("sweetchat.nick.self")) {
             player = (Player) sender;
-            newNickname = String.format("%s%s", ChatColor.translateAlternateColorCodes('&', args[0]), ChatColor.RESET);
+            newNickname = args[0];
         } else if (args.length == 2 && sender.hasPermission("sweetchat.nick.others")) {
             player = Bukkit.getPlayer(args[0]);
-            newNickname = String.format("%s%s", ChatColor.translateAlternateColorCodes('&', args[1]), ChatColor.RESET);
+            newNickname = args[1];
         } else {
             return false;
         }
@@ -38,12 +38,11 @@ public class NickCommand implements CommandExecutor {
             return false;
         }
 
-        /* Set the nickname as both the new display name as well as the player list name. */
-        player.setDisplayName(newNickname);
-        player.setPlayerListName(newNickname);
+        /* Set the new nickname of the player. */
+        Nickname.setNickname(player, newNickname);
 
         /* Notify the player of the change. */
-        player.sendMessage(String.format("You are now known as: %s", newNickname));
+        player.sendMessage(String.format("You are now known as: %s", player.getDisplayName()));
         return true;
     }
 }
