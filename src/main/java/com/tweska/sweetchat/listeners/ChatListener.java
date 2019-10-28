@@ -6,6 +6,7 @@ import com.tweska.sweetchat.events.GlobalChatEvent;
 import com.tweska.sweetchat.events.LocalChatEvent;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Server;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -36,17 +37,20 @@ public class ChatListener implements Listener {
         /* Extract some important information from the chat event. */
         Player sender = event.getPlayer();
 
+        /* Get the message the player is trying to send. */
+        String message = ChatColor.translateAlternateColorCodes('&', event.getMessage());
+
         /* A new chat event will be created for the right chat channel. */
         final SweetChatEvent newSweetChatEvent;
         switch (playerChatMode.get(sender)) {
             case GLOBAL_CHAT:
-                newSweetChatEvent = new GlobalChatEvent(event.getPlayer(), event.getMessage());
+                newSweetChatEvent = new GlobalChatEvent(sender, message);
                 break;
             case LOCAL_CHAT:
-                newSweetChatEvent = new LocalChatEvent(event.getPlayer(), event.getMessage());
+                newSweetChatEvent = new LocalChatEvent(sender, message);
                 break;
             default:
-                newSweetChatEvent = null;
+                return;
         }
 
         /* Fire the newly created event in the main server thread. */
